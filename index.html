@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Benefícios | Imobiliária Santamérica</title>
+  <meta name="description" content="Sistema de Gestão de Benefícios — Imobiliária Santamérica">
+  <link rel="icon" href="img/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+  <!-- ======= SIDEBAR ======= -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div style="background: transparent; box-shadow: none; width: 74px; height: 74px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+        <img src="img/logo.png" id="header-logo" alt="Logo Santamérica" style="width: 100%; height: 100%; object-fit: contain; cursor: pointer; transition: transform 0.2s;">
+      </div>
+      <div class="sidebar-brand">
+        <h2>Santamérica</h2>
+        <span>Gestão de Benefícios</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-title">Menu Principal</div>
+
+      <a href="#dashboard" class="nav-item active" data-page="dashboard">
+        <span class="nav-icon">${ICONS?.dashboard || ''}</span>
+        <span>Dashboard</span>
+      </a>
+
+      <a href="#vale-alimentacao" class="nav-item" data-page="vale-alimentacao">
+        <span class="nav-icon">${ICONS?.food || ''}</span>
+        <span>Vale Alimentação</span>
+        <span class="nav-badge" id="badge-va">0</span>
+      </a>
+
+      <a href="#vale-transporte" class="nav-item" data-page="vale-transporte">
+        <span class="nav-icon">${ICONS?.bus || ''}</span>
+        <span>Vale Transporte</span>
+        <span class="nav-badge" id="badge-vt">0</span>
+      </a>
+
+      <a href="#farmacia" class="nav-item" data-page="farmacia">
+        <span class="nav-icon">${ICONS?.farmacia || ''}</span>
+        <span>Farmácia</span>
+      </a>
+
+      <a href="#funcionarios" class="nav-item" data-page="funcionarios">
+        <span class="nav-icon">${ICONS?.users || ''}</span>
+        <span>Funcionários</span>
+      </a>
+
+      <a href="#recibos" class="nav-item" data-page="recibos">
+        <span class="nav-icon">${ICONS?.download || ''}</span>
+        <span>Recibos</span>
+      </a>
+
+      <div class="sidebar-section-title">Sistema</div>
+
+      <a href="#configuracoes" class="nav-item" data-page="configuracoes">
+        <span class="nav-icon">${ICONS?.settings || ''}</span>
+        <span>Configurações</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-content" style="flex-direction: column; align-items: center; text-align: center; gap: 4px; padding: 12px 0; background: transparent;">
+        <span style="font-size: 13px; font-weight: 600; color: var(--text-secondary); line-height: 1.4;">Desenvolvido por Santamérica<br>Innovation Lab</span>
+        <span style="font-size: 11px; color: var(--text-muted); margin-top: 2px; display: flex; align-items: center; gap: 8px;">Santamérica &copy; 2026 <span class="connection-dot" id="connection-dot"></span></span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ======= MAIN CONTENT ======= -->
+  <main class="main-content">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left" style="display:flex; align-items:baseline; gap:16px;">
+        <h1 id="page-title">Dashboard</h1>
+        <span id="datetime-display" style="font-size:13px; color:var(--text-muted); font-weight:500;"></span>
+      </div>
+      <div class="topbar-right">
+
+        <button class="btn-sync" id="btn-sync" title="Sincronizar dados">
+          <span class="nav-icon" style="width:16px;height:16px;">${ICONS?.sync || ''}</span>
+          <span>Sincronizar</span>
+        </button>
+        <button class="btn btn-icon btn-ghost" id="btn-theme" title="Alternar tema">
+          <span class="nav-icon" id="theme-icon" style="width:18px;height:18px;">${ICONS?.moon || ''}</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Content Area (renderizado dinamicamente) -->
+    <div class="content-area" id="content-area">
+      <!-- O conteúdo de cada página é injetado aqui via JS -->
+    </div>
+
+  </main>
+
+  <!-- ======= MODAL CONTAINER ======= -->
+  <div class="modal-backdrop" id="modal-backdrop"></div>
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <h3 id="modal-title">Modal</h3>
+      <button class="modal-close" id="modal-close">
+        <span class="nav-icon" style="width:18px;height:18px;">${ICONS?.x || ''}</span>
+      </button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer" id="modal-footer"></div>
+  </div>
+
+  <!-- ======= TOASTS ======= -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ======= SCRIPTS ======= -->
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/vale-alimentacao.js"></script>
+  <script src="js/vale-transporte.js"></script>
+  <script src="js/farmacia.js"></script>
+  <script src="js/funcionarios.js"></script>
+  <script src="js/recibos.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
